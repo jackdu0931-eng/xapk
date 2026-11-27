@@ -50,7 +50,7 @@ class MainActivity : Activity() {
                 ZipInputStream(input).use { zip ->
                     var entry = zip.nextEntry
                     while (entry != null) {
-                        val safeName = entry.name.replace('\\\\', '/')
+                        val safeName = entry.name.replace('\\', '/')
                         if (!entry.isDirectory && !safeName.startsWith("/") && safeName.split("/").none { it == ".." }) {
                             val out = File(dir, safeName)
                             out.parentFile?.mkdirs()
